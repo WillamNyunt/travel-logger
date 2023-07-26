@@ -3,6 +3,8 @@ import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import {MapContainer, TileLayer} from 'react-leaflet'
 import '../scss/Map.scss';
+import DesktopBar from "./DesktopBar/DekstopBar";
+
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -16,8 +18,8 @@ class Map extends Component {
     render() {
         return (
             <MapContainer className="full-height-map"
-                center={[38, 139.69222]}
-                zoom={6}
+                center={[10, 120]}
+                zoom={5}
                 minZoom={3}
                 maxZoom={19}
                 scrollWheelZoom={true}>
@@ -25,6 +27,7 @@ class Map extends Component {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
                     url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
                 />
+                <DesktopBar/>
             </MapContainer>
         );
     }
