@@ -3,13 +3,14 @@
 import React from 'react';
 import {useState, useEffect} from "react";
 import '../../scss/Widgets/TimeWidget.scss';
+import { format } from 'date-fns';
 
 const TimeWidget = () => {
     const [time , setTime] = useState('')
     const [date , setDate] = useState('')
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { weekday: 'short', year: 'numeric', month: '2-digit', day: 'numeric' };
     const today  = new Date();
-    const dateToday = today.toLocaleDateString("en-UK", options)
+    const dateToday = format(today, 'EEE, do MMM yyyy');
 
 
     useEffect(() => {
@@ -22,7 +23,6 @@ const TimeWidget = () => {
     return (
         <div className="time-widget">
             <div className="time-widget__time">
-                {time}
             </div>
             <div className="time-widget__date">
                 {dateToday}

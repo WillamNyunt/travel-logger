@@ -2,7 +2,7 @@ import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import {MapContainer, TileLayer} from 'react-leaflet'
 import '../scss/Map.scss';
-import DesktopBar from "./DesktopBar/DekstopBar";
+import DesktopBar from "./DekstopBar";
 import { useSelector} from 'react-redux';
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -16,9 +16,6 @@ L.Icon.Default.mergeOptions({
 
 function Map () {
     const theme = useSelector((state) => state.theme.theme);
-
-        
-    
         return (
             <MapContainer className="full-height-map"
                 center={[10, 120]}
