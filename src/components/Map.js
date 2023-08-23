@@ -3,7 +3,9 @@ import L from 'leaflet'
 import {MapContainer, TileLayer} from 'react-leaflet'
 import '../scss/Map.scss';
 import DesktopBar from "./DekstopBar";
-import { useSelector} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import Modal from './Modal/Modal';
+
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -16,6 +18,8 @@ L.Icon.Default.mergeOptions({
 
 function Map () {
     const theme = useSelector((state) => state.theme.theme);
+    const modalOpen = useSelector(modal => modal.modal.modal);
+
         return (
             <MapContainer className="full-height-map"
                 center={[10, 120]}
@@ -28,6 +32,7 @@ function Map () {
                     url={theme === 'dark-theme' ?  ('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png') : ('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png')}
                 />
                 <DesktopBar/>
+                {modalOpen && <Modal/>}
             </MapContainer>
         );
 }
