@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 import { setModal } from '../../slices/modal';
 
 const Modal = () => {
+    const dispatch = useDispatch();
 
     const modalCloseHandler = () => {
         console.log('modalclose')
-        const dispatch = useDispatch();
         dispatch(setModal(false))
     }
 

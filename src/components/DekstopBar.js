@@ -7,6 +7,7 @@ import { setTheme } from '../slices/theme';
 const DesktopBar = () => {
     const theme = useSelector((state) => state.theme.theme);
     const dispatch = useDispatch();
+    
     const toggleTheme = () => {
         const newTheme = theme === 'light-theme' ? 'dark-theme' : 'light-theme';
         dispatch(setTheme(newTheme));
