@@ -3,7 +3,7 @@ import L from 'leaflet'
 import {MapContainer, TileLayer} from 'react-leaflet'
 import '../scss/Map.scss';
 import DesktopBar from "./DekstopBar";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Modal from './Modal/Modal';
 
 
@@ -32,7 +32,7 @@ function Map () {
                     url={theme === 'dark-theme' ?  ('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png') : ('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png')}
                 />
                 <DesktopBar/>
-                {modalOpen && <Modal/>}
+                <Modal open={modalOpen ? true : false}/>
             </MapContainer>
         );
 }

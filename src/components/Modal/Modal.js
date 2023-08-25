@@ -2,18 +2,17 @@ import './Modal.scss';
 import { useDispatch } from 'react-redux';
 import { setModal } from '../../slices/modal';
 
-const Modal = () => {
+const Modal = (props) => {
     const dispatch = useDispatch();
 
     const modalCloseHandler = () => {
-        console.log('modalclose')
         dispatch(setModal(false))
     }
 
     return (
-        <div className='modal'>
-            <a className='modal-exit' onClick={modalCloseHandler}>X</a>
-            This is a modal
+        <div className={`modal ${props.open && '-open'}`}>
+            <span className='modal-exit' onClick={modalCloseHandler}>X</span>
+            <h3 className='modal-title'>Modal title</h3>
         </div>
     )
 }

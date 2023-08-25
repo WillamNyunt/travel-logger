@@ -8,11 +8,18 @@
     background-color: rgb(232, 232, 232);
     color: rgb(8, 8, 8);
     position: relative;
+    transform: translateX(-300px);
+    transition: transform 200ms ease-in-out;
+    &.-open {
+     transform: translateX(0);   
+    }
 }
 
 .modal-exit {
     cursor: pointer;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 5px;
+    top: 5px;
+    font-size: 30px;
+
 }
