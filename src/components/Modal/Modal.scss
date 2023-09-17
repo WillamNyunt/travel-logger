@@ -13,13 +13,59 @@
     &.-open {
      transform: translateX(0);   
     }
+    &.-closed {
+        .modal-open-tooltip {
+            transform: translateX(45px);
+            display: block;
+            padding: 5px;
+            background-color: white;
+            width: 35px;
+            border-radius: 0 15px 15px 0;
+            font-weight: 500;
+        }
+    }
 }
 
 .modal-exit {
     cursor: pointer;
     position: absolute;
+    right: 15px;
+    top: 5px;
+    font-size: 30px;
+    &::after {
+        display: inline-block;
+        content: "\00d7"; /* This will render the 'X' */
+    }
+
+}
+
+.modal-open-tooltip {
+    cursor: pointer;
+    position: absolute;
     right: 5px;
     top: 5px;
     font-size: 30px;
-
+    display: none;
+    &::after {
+        display: inline-block;
+        content: "\002b";
+        height: 100%;
+        width: 100%;
+        padding-left: 8px;
+    }
+    &:hover{
+        &::before{
+            display: inline-block;
+            content: attr(data-tooltip);
+            position: absolute;
+            font-size: 20px;
+            transform: translateX(45px);
+            width: 200px;
+            color: white;
+            background-color: black;
+            padding-left: 20px;
+            border: 50%;
+            top: 15px;
+        }
+    }
 }
