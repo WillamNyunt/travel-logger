@@ -28,11 +28,12 @@ function Map () {
                 maxZoom={19}
                 scrollWheelZoom={true}>
                 <TileLayer
+                    className='map-tile'
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
                     url={theme === 'dark-theme' ?  ('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png') : ('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png')}
                 />
                 <DesktopBar/>
-                <Modal open={modalOpen ? true : false}/>
+                {/* <Modal open={modalOpen ? true : false}/> */}
                 <DarkModeBtn/>
             </MapContainer>
         );
