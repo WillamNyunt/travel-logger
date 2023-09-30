@@ -1,0 +1,48 @@
+.dark-mode-btn {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    z-index: 1000;
+    height: 20px;
+    width: 40px;
+    border-radius: 25px;
+    border: 2px solid black;
+    &:hover {
+        cursor: pointer;
+    }
+    .light-theme & {
+        background-color: #e0e0e0;
+    }
+    &:before{
+        content: "Dark Mode";
+        position: absolute;
+        top: 3px;
+        right: 45px;
+        height: 20px;
+        width: 80px;
+        .light-theme & {
+            content: "Light mode";
+            color: black;
+        }
+    }
+    span{
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background-color: #fff;
+        bottom: 0;
+        top: 0;
+        .dark-theme & {
+            background-color: #e7d535;
+            left: 0;
+            right: auto;
+        }
+        .light-theme & {
+            background-color: #000000;
+            right: 0;
+            left: auto;
+        }
+        transition: all 0.5s ease;
+    }
+}

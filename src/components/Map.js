@@ -5,7 +5,7 @@ import '../scss/Map.scss';
 import DesktopBar from "./DekstopBar";
 import { useSelector } from 'react-redux';
 import Modal from './Modal/Modal';
-
+import DarkModeBtn from './Widgets/DarkModeBtn';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -33,6 +33,7 @@ function Map () {
                 />
                 <DesktopBar/>
                 <Modal open={modalOpen ? true : false}/>
+                <DarkModeBtn/>
             </MapContainer>
         );
 }
