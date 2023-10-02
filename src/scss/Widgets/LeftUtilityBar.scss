@@ -6,13 +6,32 @@
 }
 
 .left-utility-bar__btn{
-    height: 30px;
-    width: 30px;
-    border-radius: 0 15px 15px 0;
-    background-color: rgb(24, 24, 24);
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    &:first-child{
+        border-radius: 0 5px 0 0;
+    }
+    background-color: rgb(16, 18, 26);
     border: none;
     svg { 
         font-size: 20px;
-        color: white;
+        color: rgb(181, 183, 183);
+    }
+    &:hover{
+        background-color: rgb(19, 21, 29);
+        &::before{
+            display: inline-block;
+            content: attr(data-tooltip);
+            position: absolute;
+            font-size: 20px;
+            transform: translateX(45px);
+            width: 100px;
+            color: white;
+            background-color: black;
+            padding-left: 0;
+            border: 50%;
+            top: 15px;
+        }
     }
 }

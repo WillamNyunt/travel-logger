@@ -7,11 +7,13 @@
     width: 40px;
     border-radius: 25px;
     border: 2px solid black;
+    color: white;
     &:hover {
         cursor: pointer;
     }
     .light-theme & {
         background-color: #e0e0e0;
+        color: black;
     }
     &:before{
         content: "Dark Mode";
