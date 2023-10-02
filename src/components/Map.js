@@ -6,6 +6,7 @@ import DesktopBar from "./DekstopBar";
 import { useSelector } from 'react-redux';
 import Modal from './Modal/Modal';
 import DarkModeBtn from './Widgets/DarkModeBtn';
+import LeftUtilityBar from './Widgets/LeftUtilityBar';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -33,6 +34,7 @@ function Map () {
                     url={theme === 'dark-theme' ?  ('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png') : ('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png')}
                 />
                 <DesktopBar/>
+                <LeftUtilityBar/>
                 {/* <Modal open={modalOpen ? true : false}/> */}
                 <DarkModeBtn/>
             </MapContainer>

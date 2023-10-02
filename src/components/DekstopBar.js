@@ -1,5 +1,5 @@
 import React from 'react';
-import TimeWidget from "./Widgets/TimeWidget";
+import TimeWidget from './Widgets/TimeWidget';
 import { useSelector } from 'react-redux';
 import '../scss/DesktopBar/DekstopBar.scss';
 

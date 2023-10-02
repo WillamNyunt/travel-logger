@@ -7,7 +7,6 @@ import { format } from 'date-fns';
 
 const TimeWidget = () => {
     const [time , setTime] = useState('')
-    const [date , setDate] = useState('')
     const options = { weekday: 'short', year: 'numeric', month: '2-digit', day: 'numeric' };
     const today  = new Date();
     const dateToday = format(today, 'EEE, do MMM yyyy');
