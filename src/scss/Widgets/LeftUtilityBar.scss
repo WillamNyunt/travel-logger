@@ -33,8 +33,7 @@
         background-color: black;
         padding-left: 0;
         border: 50%;
-        top: 15px;
-        opacity: 0;
+        display: none;
         transform: translateX(45px);
         transition: opacity 200ms ease-in-out;
     }
@@ -42,7 +41,7 @@
         background-color: rgb(19, 21, 29);
         box-shadow: inset 400px 0 0 0 #fd8e26;
         &::before{
-            opacity: 1;
+            display: block;
         }
     }
 }

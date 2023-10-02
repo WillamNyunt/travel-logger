@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import Modal from './Modal/Modal';
 import DarkModeBtn from './Widgets/DarkModeBtn';
 import LeftUtilityBar from './Widgets/LeftUtilityBar';
+import { TripModal } from './Modal/TripModal';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -20,6 +21,8 @@ L.Icon.Default.mergeOptions({
 function Map () {
     const theme = useSelector((state) => state.theme.theme);
     const modalOpen = useSelector(modal => modal.modal.modal);
+    const tripModalOpen = useSelector(state => state.tripModal.open);
+
 
         return (
             <MapContainer className="full-height-map"
@@ -34,6 +37,7 @@ function Map () {
                     url={theme === 'dark-theme' ?  ('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png') : ('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png')}
                 />
                 <DesktopBar/>
+                {tripModalOpen & <TripModal />}
                 <LeftUtilityBar/>
                 {/* <Modal open={modalOpen ? true : false}/> */}
                 <DarkModeBtn/>

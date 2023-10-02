@@ -1,21 +1,20 @@
 import './TripModal.scss';
 import { useDispatch } from 'react-redux';
-import { setModal } from '../../slices/tripModal';
-import { CiMap} from "reac-icons/ci";
+import { setTripModal } from '../../slices/tripModal';
 
 export const TripModal = () => {
     const dispatch = useDispatch();
 
     const modalCloseHandler = () => {
-        dispatch(setModal(false))
+        dispatch(setTripModal(false))
     }
 
     const modalOpenHandler = () => {
-        dispatch(setModal(true))
+        dispatch(setTripModal(true))
     }
     
     return (
-        <div className={`trip-modal ${props.open ? '-open' : '-closed'}`}>
+        <div className={`trip-modal`}>
             <span className='trip-modal-exit' onClick={modalCloseHandler}></span>
             <h3 className='trip-modal-title'>Modal title</h3>
             <span className='modal-open-tooltip' data-tooltip='Add trip' onClick={modalOpenHandler}></span>
