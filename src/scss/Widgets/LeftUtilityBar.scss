@@ -9,6 +9,10 @@
     height: 40px;
     width: 40px;
     cursor: pointer;
+    box-shadow: inset 0 0 0 0 #fd8e26;
+    -webkit-transition: ease-out 0.2s;
+    -moz-transition: ease-out 0.2s;
+    transition: all ease-out 0.2s;
     &:first-child{
         border-radius: 0 5px 0 0;
     }
@@ -16,22 +20,29 @@
     border: none;
     svg { 
         font-size: 20px;
-        color: rgb(181, 183, 183);
+        color: #FFF;
+        
+    }
+    &:before{
+        display: inline-block;
+        content: attr(data-tooltip);
+        position: absolute;
+        font-size: 20px;
+        width: 100px;
+        color: white;
+        background-color: black;
+        padding-left: 0;
+        border: 50%;
+        top: 15px;
+        opacity: 0;
+        transform: translateX(45px);
+        transition: opacity 200ms ease-in-out;
     }
     &:hover{
         background-color: rgb(19, 21, 29);
+        box-shadow: inset 400px 0 0 0 #fd8e26;
         &::before{
-            display: inline-block;
-            content: attr(data-tooltip);
-            position: absolute;
-            font-size: 20px;
-            transform: translateX(45px);
-            width: 100px;
-            color: white;
-            background-color: black;
-            padding-left: 0;
-            border: 50%;
-            top: 15px;
+            opacity: 1;
         }
     }
 }
