@@ -2,13 +2,14 @@ import React from 'react';
 import '../../scss/Widgets/LeftUtilityBar.scss';
 import { LuMap} from "react-icons/lu";
 import { useDispatch } from 'react-redux';
-import setTripModal from '../../slices/tripModal';
+import { setTripModal } from '../../slices/tripModal';
 
 
 const LeftUtilityBar = () => {
     const dispatch = useDispatch();
 
     const openTripModal = () => {
+        console.log('clicked trip modal open')
         dispatch(setTripModal(true))
     }
 

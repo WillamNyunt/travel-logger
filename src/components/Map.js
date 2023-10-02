@@ -37,7 +37,7 @@ function Map () {
                     url={theme === 'dark-theme' ?  ('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png') : ('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png')}
                 />
                 <DesktopBar/>
-                {tripModalOpen & <TripModal />}
+                {tripModalOpen && <TripModal />}
                 <LeftUtilityBar/>
                 {/* <Modal open={modalOpen ? true : false}/> */}
                 <DarkModeBtn/>

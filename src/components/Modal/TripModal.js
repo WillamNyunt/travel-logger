@@ -14,9 +14,9 @@ export const TripModal = () => {
     }
     
     return (
-        <div className={`trip-modal`}>
+        <div className='trip-modal'>
             <span className='trip-modal-exit' onClick={modalCloseHandler}></span>
-            <h3 className='trip-modal-title'>Modal title</h3>
+            <h3 className='trip-modal-title'>Trips</h3>
             <span className='modal-open-tooltip' data-tooltip='Add trip' onClick={modalOpenHandler}></span>
         </div>
     )
