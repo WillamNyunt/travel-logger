@@ -7,6 +7,7 @@ import {
   signInWithGoogle,
 } from "./firebase";
 import "./scss/Register.scss";
+import { FcGoogle } from "react-icons/fc";
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,38 +25,40 @@ function Register() {
   return (
     <div className="register">
       <div className="register__container">
+        <h2 className="register__title">Register</h2>
+        <label className="register__label" forHTML="name">Full Name</label>
         <input
           type="text"
           className="register__textBox"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
         />
+         <label className="register__label" forHTML="email">Email address</label>
         <input
           type="text"
           className="register__textBox"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
         />
+         <label className="register__label" forHTML="password">Password</label>
         <input
           type="password"
           className="register__textBox"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
         />
         <button className="register__btn" onClick={register}>
           Register
         </button>
+        <div className="register__or">Or</div>
         <button
           className="register__btn register__google"
           onClick={signInWithGoogle}
-        >
+        ><FcGoogle/>
           Register with Google
         </button>
         <div>
-          Already have an account? <Link to="/">Login</Link> now.
+          Already have an account? <Link className="register__link" to="/">Login</Link> now.
         </div>
       </div>
     </div>

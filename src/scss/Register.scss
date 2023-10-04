@@ -4,30 +4,97 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .register__container {
+}
+.register__container {
     display: flex;
     flex-direction: column;
     text-align: center;
-    background-color: #dcdcdc;
-    padding: 30px;
-  }
-  .register__textBox {
+    background-color: #f0f0f0;
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.register__textBox {
     padding: 10px;
     font-size: 18px;
-    margin-bottom: 10px;
-  }
-  .register__btn {
+    margin-bottom: 32px;
+    &:last-of-type {
+        margin-bottom: 62px;
+    }
+}
+.register__btn {
     padding: 10px;
     font-size: 18px;
     margin-bottom: 10px;
     border: none;
     color: white;
     background-color: black;
-  }
-  .register__google {
-    background-color: #4285f4;
-  }
-  .register div {
+    &:hover {
+        cursor: pointer;
+    }
+}
+.register__google {
+    background-color: #fff;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 20px;
+    justify-content: center;
+    border: 1px solid rgb(104, 104, 104);
+    &:hover {
+        cursor: pointer;
+    }
+}
+.register div {
     margin-top: 7px;
+}
+
+.register__label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.register__link {
+    text-decoration: none;
+    &:visited {
+      color: rgb(2, 6, 35);
+    }
+    font-weight: 600;
+}
+
+.register__title {
+    text-transform: uppercase;
+    font-size: 28px;
+    align-self: flex-start;
+    margin-bottom: 56px;
+  }
+
+
+  .register__or {
+    width: 100%;
+    font-weight: 600;
+    color: black;
+    margin-block: 1.5rem;
+    text-align: center;
+    position: relative;
+  
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      height: 1px;
+      width: 45%;
+      background-color: rgb(91, 91, 91);
+    }
+    &:before {
+      left: 0;
+    }
+    &:after {
+      right: 0;
+    }
   }

@@ -15,12 +15,13 @@ function Reset() {
   return (
     <div className="reset">
       <div className="reset__container">
+        <h2 className="reset__title">Reset password</h2>
+        <label forHtml="email" className="reset__label">E-mail address</label>
         <input
           type="text"
           className="reset__textBox"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
         />
         <button
           className="reset__btn"
@@ -29,7 +30,7 @@ function Reset() {
           Send password reset email
         </button>
         <div>
-          Don't have an account? <Link to="/register">Register</Link> now.
+          Don't have an account? <Link className="reset__link" to="/register">Register</Link> now.
         </div>
       </div>
     </div>
