@@ -104,6 +104,7 @@ const sendPasswordReset = async (email) => {
     signInWithEmailAndPassword,
     sendPasswordReset,
     logout,
+    sendPasswordResetEmail,
   };
 
   
