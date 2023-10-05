@@ -10,7 +10,7 @@ function AccountBar() {
     <div className="accountBar">
         {user.name}
         <div className="accountBar__thumbnail">
-            
+            <span>WN</span>
         </div>
     </div>
   )

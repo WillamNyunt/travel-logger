@@ -6,3 +6,5 @@ To do:
 Add trip
 Selected trip should appear middle top
 Then below that, node name that is selected
+
+Fire structure clean up

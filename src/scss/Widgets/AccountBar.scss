@@ -15,6 +15,11 @@
 .accountBar__thumbnail {
     height: 50px;
     width: 50px;
-    background-color: aqua;
+    background-color: rgb(231, 129, 5);
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
 }

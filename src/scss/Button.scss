@@ -1,5 +1,14 @@
-.button-dm-white {
+.btn-dm-white {
     background-color: white;
     color: black;
+
+}
+
+.btn {
     padding: 10px;
+    border: none;
+    font-weight: bold;
+    &:hover {
+        cursor: pointer;
+    }
 }
