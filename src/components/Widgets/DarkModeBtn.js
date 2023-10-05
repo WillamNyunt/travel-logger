@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setTheme } from '../../slices/theme';
-import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import '../../scss/Widgets/DarkModeBtn.scss';
 
 const DarkModeBtn = () => {

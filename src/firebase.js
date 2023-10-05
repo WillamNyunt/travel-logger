@@ -61,7 +61,7 @@ const logInWithEmailAndPassword = async (email, password) => {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      throw new Error('Cannot login')
     }
 };
 
@@ -101,10 +101,8 @@ const sendPasswordReset = async (email) => {
     signInWithGoogle,
     logInWithEmailAndPassword,
     registerWithEmailAndPassword,
-    signInWithEmailAndPassword,
     sendPasswordReset,
     logout,
-    sendPasswordResetEmail,
   };
 
   
