@@ -8,6 +8,8 @@ import Modal from './Modal/Modal';
 import DarkModeBtn from './Widgets/DarkModeBtn';
 import LeftUtilityBar from './Widgets/LeftUtilityBar';
 import { TripModal } from './Modal/TripModal';
+import { logout } from 'src/firebase';
+import AccountBar from './Widgets/AccountBar';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -39,8 +41,12 @@ function Map () {
                 <DesktopBar/>
                 {tripModalOpen && <TripModal />}
                 <LeftUtilityBar/>
+                <button className="map__logout" onClick={logout}>
+                Logout
+                </button>
                 {/* <Modal open={modalOpen ? true : false}/> */}
                 <DarkModeBtn/>
+                <AccountBar />
             </MapContainer>
         );
 }

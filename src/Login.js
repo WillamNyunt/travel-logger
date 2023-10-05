@@ -22,14 +22,14 @@ function Login() {
     <div className="login">
       <div className="login__container">
         <h1 className="login__title">Login</h1>
-        <label className="login__label" forHtml="email">Email</label>
+        <label className="login__label" forhtml="email">Email</label>
         <input
           type="text"
           className="login__textBox"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label className="login__label" forHtml="password">Password<Link to="/reset" className="login__link">Forgot Password</Link></label>
+        <label className="login__label" forhtml="password">Password<Link to="/reset" className="login__link">Forgot Password</Link></label>
         <input
           type="password"
           className="login__textBox"

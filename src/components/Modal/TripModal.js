@@ -18,7 +18,7 @@ export const TripModal = () => {
             <span className='trip-modal-exit' onClick={modalCloseHandler}></span>
             <h3 className='trip-modal-title'>Trips</h3>
             <div className='trip-modal-content'>
-                <p>Oops... it looks liek there are no trips currently added.</p>
+                <p>Oops... it looks like there are no trips currently added.</p>
             </div>
             <div className='trip-modal-footer'>
                 <button>Add trip</button>

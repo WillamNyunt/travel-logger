@@ -19,3 +19,10 @@
 .map-tile {
   background-color: black;
 }
+
+.map__logout {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  z-index: 1000;
+}
