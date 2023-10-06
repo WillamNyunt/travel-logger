@@ -20,14 +20,14 @@ import {
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyA7WQs3fWOo2syCDoB20yTxDjwNJQebAV4",
-    authDomain: "trave-logger.firebaseapp.com",
-    databaseURL: "https://trave-logger-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "trave-logger",
-    storageBucket: "trave-logger.appspot.com",
-    messagingSenderId: "361840594969",
-    appId: "1:361840594969:web:2b5a26452d8672e1231a88",
-    measurementId: "G-4X2859VW67"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABSE_URL,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGEING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
   };
 
 
