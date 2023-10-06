@@ -6,11 +6,11 @@ import { auth, db } from "./firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser } from './slices/user';
+import fetchTrips  from './fetchData';
 import Map from './components/Map';
 
 function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
-  const [name, setName] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const fetchUserName = async () => {
@@ -18,7 +18,6 @@ function Dashboard() {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
-      setName(data.name);
       dispatch(setUser(data))
     } catch (err) {
       console.error(err);
@@ -32,6 +31,7 @@ function Dashboard() {
     if (loading) return;
     if (!user) return navigate("/");
     fetchUserName();
+    fetchTrips(user.uid);
   }, [user, loading]);
 
   return (

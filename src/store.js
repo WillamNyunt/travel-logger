@@ -4,6 +4,7 @@ import modalReducer from './slices/modal';
 import tripModalReducer from './slices/tripModal';
 import loginReducer from './slices/login';
 import userReducer from './slices/user';
+import tripReducer from './slices/trip';
 
 const store = configureStore({
     reducer: {
@@ -12,7 +13,10 @@ const store = configureStore({
         tripModal: tripModalReducer,
         login: loginReducer,
         user: userReducer,
+        trip: tripReducer,
     },
 });
+
+
 
 export default store;
