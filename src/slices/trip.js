@@ -1,8 +1,9 @@
 //create slice for trip
 
 import { db, auth } from '../firebase';
-import { getDocs, query, collection, where } from "firebase/firestore";
+import { getDocs, query, collection, where, addDoc } from "firebase/firestore";
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
+import { add } from 'date-fns';
 
 export const tripApi = createApi({
     reducerPath: 'tripApi',
@@ -30,7 +31,22 @@ export const tripApi = createApi({
                     }
             },
          }, {}),
+         setTrip: builder.mutation({
+            async queryFn(tripData) {
+                // add doc to trips collection
+                try {
+                    const ref = collection(db, "trips");
+                    const docRef = await addDoc(ref, {
+                        name: tripData.name,
+                        uid: auth.currentUser.uid,
+                        startLocation: new db.GeoPoint(tripData.startLocation.lat, tripData.startLocation.long) ? new db.GeoPoint(tripData.startLocation.lat, tripData.startLocation.long) : null,
+                        endLocation: new db.GeoPoint(tripData.endLocation.lat, tripData.endLocation.long) ? new db.GeoPoint(tripData.endLocation.lat, tripData.endLocation.long) : null,
+                    });
+                } catch (err) {
+                    console.error(err);
+                }
+            }})            
     }),
 })
 
-export const { useGetTripsQuery } = tripApi;
+export const { useGetTripsQuery, useSetTripMutation } = tripApi;
