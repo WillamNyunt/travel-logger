@@ -6,7 +6,6 @@ import { auth, db } from "./firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser } from './slices/user';
-import fetchTrips  from './fetchData';
 import Map from './components/Map';
 
 function Dashboard() {
@@ -24,14 +23,12 @@ function Dashboard() {
       alert("An error occured while fetching user data");
     }
   };
-
-  const userData = useSelector(state => state.user.user)
+  
   const theme = useSelector(state => state.theme.theme)
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/");
     fetchUserName();
-    fetchTrips(user.uid);
   }, [user, loading]);
 
   return (

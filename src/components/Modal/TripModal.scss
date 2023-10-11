@@ -15,6 +15,12 @@
     cursor: default;
 }
 
+.trip-modal__content {
+    height: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .trip-modal__exit {
     align-self: flex-end;
     cursor: pointer;

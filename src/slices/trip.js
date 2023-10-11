@@ -1,31 +1,36 @@
 //create slice for trip
 
-import { createSlice } from '@reduxjs/toolkit';
+import { db, auth } from '../firebase';
+import { getDocs, query, collection, where } from "firebase/firestore";
+import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const initialState = {
-    trips: [],
-};
+export const tripApi = createApi({
+    reducerPath: 'tripApi',
+    baseQuery: fakeBaseQuery(),
+    tags: ['trips'],
+    endpoints: builder => ({
+        getTrips: builder.query({
+            async queryFn(userID) {
+                try {
+                    const ref = collection(db, "trips");
+                    const q = query(ref, where("uid", "==", userID));
+                    const querySnapshot = await getDocs(q);
+                    const trips = querySnapshot.docs;
+                    const tripsArr = trips.map(trip => {
+                        return {
+                            id: trip.id,
+                            name: trip.data().name,
+                            endLocation: {lat: trip.data().endLocation._lat.toString(), long: trip.data().endLocation._long.toString()},
+                            startLocation: {lat: trip.data().startLocation._lat.toString(), long: trip.data().startLocation._long.toString()},
+                        }
+                    })
+                    return {data : tripsArr};
+                    } catch (err) {
+                        console.error(err);
+                    }
+            },
+         }, {}),
+    }),
+})
 
-const tripSlice = createSlice({
-    name: 'trips',
-    initialState,
-    reducers: {
-        setTrips(state, action) {
-            state.trips = action.payload;
-        },
-        addTrip(state, action) {
-            state.trips.push(action.payload);
-        },
-        deleteTrip(state, action) {
-            state.trips = state.trips.filter((trip) => trip.id !== action.payload);
-        },
-        updateTrip(state, action) {
-            const index = state.trips.findIndex((trip) => trip.id === action.payload.id);
-            state.trips[index] = action.payload;
-        },
-    },
-});
-
-export default tripSlice.reducer;
-
-export const { setTrips, addTrip, deleteTrip, updateTrip } = tripSlice.actions;
+export const { useGetTripsQuery } = tripApi;

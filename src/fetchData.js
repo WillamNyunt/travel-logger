@@ -14,6 +14,5 @@ const fetchTrips = async (uid) => {
   }
 }
 
-
 export default fetchTrips;
     

@@ -9,7 +9,6 @@ const LeftUtilityBar = () => {
     const dispatch = useDispatch();
 
     const openTripModal = () => {
-        console.log('clicked trip modal open')
         dispatch(setTripModal(true))
     }
 
