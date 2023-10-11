@@ -4,6 +4,8 @@ import { setTripModal } from '../../slices/tripModal';
 import { RxCross2 } from "react-icons/rx";
 import { useGetTripsQuery } from 'src/slices/trip';
 import { Skeleton } from '@mui/material';
+import TripTable from './TripTable';
+import { useState } from 'react';
 
 export const TripModal = () => {
     const dispatch = useDispatch();
@@ -23,6 +25,7 @@ export const TripModal = () => {
         console.log('clicked')
     }
 
+    const { addTripFormOpen, setAddTripFormOpen } = useState(false);
 
     return (
         <div className='trip-modal'>
@@ -35,31 +38,14 @@ export const TripModal = () => {
                 <Skeleton sx={{ bgcolor: 'grey.700', fontSize: '18px', width: '80%'}} className="mt-5" variant='text' height={48} />
                 <Skeleton sx={{ bgcolor: 'grey.900' }} variant="rectangular" width={100} height={38} />
             </div> 
-            ) }
-
+            )}
             { error && (
                 <div>
                     {error}
                 </div>
             )}
-            {  data ? 
-                <table className='w-full'>
-                    <th>
-                        <td>Name</td>
-                    </th>
-                    <tbody className='w-full'>
-                        {data.map((trip) => (
-                            <tr className='w-full'>
-                                <td className='w-full hover:bg-gray-400 cursor-pointer'>{trip.name}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-     
-                </table>
-             : 
-                <>
-                   <p>Oops... it looks like there are no trips currently added.</p>
-                </>
+            {  data &&
+                <TripTable data={data} />
             }
             </div>
             <div className='trip-modal-footer'>
