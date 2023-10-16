@@ -3,7 +3,6 @@
 import { db, auth } from '../firebase';
 import { getDocs, query, collection, where, addDoc } from "firebase/firestore";
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
-import { add } from 'date-fns';
 
 export const tripApi = createApi({
     reducerPath: 'tripApi',

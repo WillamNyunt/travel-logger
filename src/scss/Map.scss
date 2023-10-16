@@ -26,3 +26,7 @@
   top: 20px;
   z-index: 1000;
 }
+
+.leaflet-touch .leaflet-control-attribution, .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+  display: none;
+}

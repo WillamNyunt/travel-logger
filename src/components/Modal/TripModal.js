@@ -11,6 +11,7 @@ export const TripModal = () => {
     const dispatch = useDispatch();
 
     const modalCloseHandler = () => {
+        console.log('trip modal closed')
         dispatch(setTripModal(false))
     }
 

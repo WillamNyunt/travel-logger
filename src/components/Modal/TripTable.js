@@ -32,6 +32,7 @@ const TripTable =  () => {
                     data.map((trip) => (
                     <tr className='w-full' key={trip.id}>
                         <td className='w-full hover:bg-gray-400 cursor-pointer'>{trip.name}</td>
+                        <td className='w-full hover:bg-gray-400 cursor-pointer'>...</td>
                     </tr>
                 )) : 
                     <div>No Trips</div>
