@@ -1,13 +1,13 @@
 //create slice for trip
 
 import { db, auth } from '../firebase';
-import { getDocs, query, collection, where, addDoc } from "firebase/firestore";
+import { getDocs, query, collection, where, addDoc, GeoPoint } from "firebase/firestore";
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const tripApi = createApi({
     reducerPath: 'tripApi',
     baseQuery: fakeBaseQuery(),
-    tags: ['trips'],
+    tags: ['Trips'],
     endpoints: builder => ({
         getTrips: builder.query({
             async queryFn(userID) {
@@ -26,26 +26,40 @@ export const tripApi = createApi({
                     })
                     return {data : tripsArr};
                     } catch (err) {
+                        console.log('There was an error fetching trip data.')
                         console.error(err);
                     }
             },
          }, {}),
-         setTrip: builder.mutation({
+         addTrip: builder.mutation({
             async queryFn(tripData) {
-                // add doc to trips collection
                 try {
                     const ref = collection(db, "trips");
                     const docRef = await addDoc(ref, {
                         name: tripData.name,
                         uid: auth.currentUser.uid,
-                        startLocation: new db.GeoPoint(tripData.startLocation.lat, tripData.startLocation.long) ? new db.GeoPoint(tripData.startLocation.lat, tripData.startLocation.long) : null,
-                        endLocation: new db.GeoPoint(tripData.endLocation.lat, tripData.endLocation.long) ? new db.GeoPoint(tripData.endLocation.lat, tripData.endLocation.long) : null,
+                        startLocation: new GeoPoint(tripData.startLocation.lat, tripData.startLocation.lng) ? new GeoPoint(Number(tripData.startLocation.lat), Number(tripData.startLocation.lng)) : Number(0),
+                        endLocation: new GeoPoint(tripData.endLocation.lat, tripData.endLocation.lng) ? new GeoPoint(Number(tripData.endLocation.lat), Number(tripData.endLocation.lng)) : Number(0),
                     });
+                    return `Trip added with ID: ${docRef.id}`;
                 } catch (err) {
+                    console.log('There was an error adding trip data.')
                     console.error(err);
                 }
-            }})            
+            },
+            invalidatesTags: (result, error, id) => [{ type: 'Trips', id }],
+            
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                try {
+                    const result = await dispatch(queryFulfilled(arg));
+                    return { result, error: null };
+                } catch (error) {
+                    return { result: null, error };
+                }
+            },
+            
+        })            
     }),
 })
 
-export const { useGetTripsQuery, useSetTripMutation } = tripApi;
+export const { useGetTripsQuery, useAddTripMutation } = tripApi;
