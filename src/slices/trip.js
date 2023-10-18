@@ -7,7 +7,7 @@ import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 export const tripApi = createApi({
     reducerPath: 'tripApi',
     baseQuery: fakeBaseQuery(),
-    tags: ['Trips'],
+    tagTypes: ['Trips'],
     endpoints: builder => ({
         getTrips: builder.query({
             async queryFn(userID) {
@@ -30,6 +30,7 @@ export const tripApi = createApi({
                         console.error(err);
                     }
             },
+            providesTags: (result, error, id) => [{ type: 'Trips', id }],
          }, {}),
          addTrip: builder.mutation({
             async queryFn(tripData) {
@@ -47,9 +48,9 @@ export const tripApi = createApi({
                     console.error(err);
                 }
             },
-            invalidatesTags: (result, error, id) => [{ type: 'Trips', id }],
-            
-            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+
+            invalidatesTags: ['Trips'],
+            async onQueryStarted(arg, { dispatch, queryFulfilled, updateCachedData }) {
                 try {
                     const result = await dispatch(queryFulfilled(arg));
                     return { result, error: null };
