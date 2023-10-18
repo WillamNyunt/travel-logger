@@ -1,6 +1,7 @@
 import React from 'react'
 import { useGetTripsQuery } from 'src/slices/trip';
 import { Skeleton } from '@mui/material';
+import './TripTable.scss';
 
 const TripTable =  () => {
 
@@ -30,9 +31,13 @@ const TripTable =  () => {
             <tbody className='w-full'>
                 {data ? 
                     data.map((trip) => (
-                    <tr className='w-full' key={trip.id}>
-                        <td className='w-full hover:bg-gray-400 cursor-pointer'>{trip.name}</td>
-                        <td className='w-full hover:bg-gray-400 cursor-pointer'>...</td>
+                    <tr className='w-full trip-table' key={trip.id}>
+                        <td className='w-full hover:bg-gray-400 cursor-pointer trip-table__row-data'>{trip.name}</td>
+                        <td className='w-full hover:bg-gray-400 cursor-pointer trip-table__row-utility'>
+                            <span className='trip-table__mini-modal'>
+                                <button className='btn' onClick={() => {console.log(trip.id)}}>Edit</button>
+                                <button className='btn' onClick={() => {console.log(trip.id)}}>Delete</button>
+                            </span>...</td>
                     </tr>
                 )) : 
                     <div>No Trips</div>
