@@ -1,11 +1,13 @@
 import React from 'react'
-import { useGetTripsQuery } from 'src/slices/trip';
+import { useGetTripsQuery, useRemoveTripMutation } from 'src/slices/trip';
 import { Skeleton } from '@mui/material';
 import './TripTable.scss';
 
 const TripTable =  () => {
 
     const { data, error, isLoading} = useGetTripsQuery('iSojVlIFhQh631bOJmvM6HLZV1I2');
+    const [deleteTrip, deleteTripResult] = useRemoveTripMutation()
+
 
   return (
     <>
@@ -22,21 +24,21 @@ const TripTable =  () => {
             </div>
         )}
         {  data &&
-            <table className='w-full'>
+            <table className='trip-table w-full table-auto'>
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th className='flex text-lg'>Name</th>
                 </tr>
             </thead>
             <tbody className='w-full'>
                 {data ? 
                     data.map((trip) => (
                     <tr className='w-full trip-table' key={trip.id}>
-                        <td className='w-full hover:bg-gray-400 cursor-pointer trip-table__row-data'>{trip.name}</td>
+                        <td className='w-full text-sm hover:bg-gray-400 cursor-pointer trip-table__row-data'>{trip.name}</td>
                         <td className='w-full hover:bg-gray-400 cursor-pointer trip-table__row-utility'>
                             <span className='trip-table__mini-modal'>
                                 <button className='btn' onClick={() => {console.log(trip.id)}}>Edit</button>
-                                <button className='btn' onClick={() => {console.log(trip.id)}}>Delete</button>
+                                <button className='btn' onClick={() => deleteTrip(trip.id)}>Delete</button>
                             </span>...</td>
                     </tr>
                 )) : 

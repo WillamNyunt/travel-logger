@@ -28,7 +28,7 @@ export const TripModal = () => {
             <RxCross2 className='trip-modal__exit'  onClick={modalCloseHandler} />
             <h3 className='trip-modal__title'>Trips</h3>
             <div className='trip-modal__content'>
-            { addTripFormOpen ? <AddTripForm/> : <TripTable/>}
+            { addTripFormOpen ? <AddTripForm changeToPreviousPage={() => setAddTripFormOpen(false)} /> : <TripTable/>}
             </div>
             { !addTripFormOpen ? 
                     <div className='trip-modal-footer'>

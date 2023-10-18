@@ -1,7 +1,7 @@
 //create slice for trip
 
 import { db, auth } from '../firebase';
-import { getDocs, query, collection, where, addDoc, GeoPoint } from "firebase/firestore";
+import { doc, getDocs, deleteDoc, query, collection, where, addDoc, GeoPoint } from "firebase/firestore";
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const tripApi = createApi({
@@ -31,8 +31,8 @@ export const tripApi = createApi({
                     }
             },
             providesTags: (result, error, id) => [{ type: 'Trips', id }],
-         }, {}),
-         addTrip: builder.mutation({
+         }),
+        addTrip: builder.mutation({
             async queryFn(tripData) {
                 try {
                     const ref = collection(db, "trips");
@@ -48,7 +48,6 @@ export const tripApi = createApi({
                     console.error(err);
                 }
             },
-
             invalidatesTags: ['Trips'],
             async onQueryStarted(arg, { dispatch, queryFulfilled, updateCachedData }) {
                 try {
@@ -58,9 +57,20 @@ export const tripApi = createApi({
                     return { result: null, error };
                 }
             },
-            
-        })            
+        }),
+        removeTrip: builder.mutation({
+            async queryFn(tripID) {
+                try {
+                    await deleteDoc(doc(db, "trips", tripID))
+                    return `Trip deleted with ID: ${tripID}`;
+                } catch (err) {
+                    console.log('There was an error deleting trip data.')
+                    console.error(err);
+                }
+            },
+            invalidatesTags: ['Trips'],
+        }),
     }),
 })
 
-export const { useGetTripsQuery, useAddTripMutation } = tripApi;
+export const { useGetTripsQuery, useAddTripMutation, useRemoveTripMutation } = tripApi;
