@@ -1,7 +1,7 @@
 //create slice for trip
 
 import { db, auth } from '../firebase';
-import { doc, getDocs, deleteDoc, query, collection, where, addDoc, GeoPoint } from "firebase/firestore";
+import { doc, getDocs, deleteDoc, query, collection, where, addDoc, GeoPoint, updateDoc } from "firebase/firestore";
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const tripApi = createApi({
@@ -32,6 +32,20 @@ export const tripApi = createApi({
             },
             providesTags: (result, error, id) => [{ type: 'Trips', id }],
          }),
+        getTripByTripId: builder.query({
+            async queryFn(tripID) {
+                try {
+                    const ref = doc(db, "trips", tripID);
+                    const docSnap = await getDocs(ref);
+                    const trip = docSnap.data();
+                    return trip;
+                } catch (err) {
+                    console.log('There was an error fetching trip data.')
+                    console.error(err);
+                }
+            },
+            providesTags: (result, error, id) => [{ type: 'Trips', id }],
+        }),
         addTrip: builder.mutation({
             async queryFn(tripData) {
                 try {
@@ -70,7 +84,24 @@ export const tripApi = createApi({
             },
             invalidatesTags: ['Trips'],
         }),
+        editTrip: builder.mutation({
+            async queryFn(tripData) {
+                try {
+                    const ref = doc(db, "trips", tripData.id);
+                    await updateDoc(ref , {
+                        name: tripData.name,
+                        startLocation: (tripData.startLocation?.lat && tripData.startLocation?.lng)  ? new GeoPoint(Number(tripData.startLocation.lat), Number(tripData.startLocation.lng)) : new GeoPoint(0, 0),
+                        endLocation: (tripData.endLocation?.lat && tripData.endLocation?.lng) ? new GeoPoint(Number(tripData.endLocation.lat), Number(tripData.endLocation.lng)) : new GeoPoint(0, 0),
+                    });
+                    return `Trip edited with ID: ${tripData.id}`;
+                } catch (err) {
+                    console.log('There was an error editing trip data.')
+                    console.error(err);
+                }
+            }, 
+            invalidatesTags: ['Trips'],
+        }),
     }),
 })
 
-export const { useGetTripsQuery, useAddTripMutation, useRemoveTripMutation } = tripApi;
+export const { useGetTripsQuery, useGetTripByTripId, useAddTripMutation, useRemoveTripMutation, useEditTripMutation } = tripApi;

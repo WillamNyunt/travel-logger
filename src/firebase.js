@@ -18,6 +18,8 @@ import {
     addDoc,
 } from "firebase/firestore";
 
+import { tripApi } from "./slices/trip";
+
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -93,6 +95,7 @@ const sendPasswordReset = async (email) => {
 
   const logout = () => {
     signOut(auth);
+    tripApi.util.resetApiState();
   };
 
   export {
