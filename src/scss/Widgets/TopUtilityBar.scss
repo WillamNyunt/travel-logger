@@ -1,0 +1,17 @@
+.topUtilityBar {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 30px;
+    width: 300px;
+    background-color: #181818;
+    z-index: 999;
+    color: white;
+    font-size: 18px;
+    padding: 20px;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -8,6 +8,7 @@ import DarkModeBtn from './Widgets/DarkModeBtn';
 import LeftUtilityBar from './Widgets/LeftUtilityBar';
 import { TripModal } from './Modal/TripModal';
 import AccountBar from './Widgets/AccountBar';
+import TropUtilityBar from './Widgets/TropUtilityBar';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -39,6 +40,7 @@ function Map () {
                 {tripModalOpen && <TripModal />}
                 <LeftUtilityBar/>
                 <DarkModeBtn/>
+                <TropUtilityBar/>
                 <AccountBar />
             </MapContainer>
         );
