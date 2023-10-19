@@ -103,7 +103,7 @@ export const tripApi = baseApi.injectEndpoints({
     overrideExisting: false,
 })
 
-const initialState = {selectedTrip : ''}
+const initialState = {}
 
 const tripSlice = createSlice({
     name: "trip",
@@ -116,14 +116,5 @@ const tripSlice = createSlice({
 })
 
 export const { setTrip } = tripSlice.actions;
-
 export default tripSlice.reducer;
-
-
-
-
-
-
-
-
 export const { useGetTripsQuery, useGetTripByTripId, useAddTripMutation, useRemoveTripMutation, useEditTripMutation } = tripApi;
