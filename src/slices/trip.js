@@ -2,12 +2,10 @@
 
 import { db, auth } from '../firebase';
 import { doc, getDocs, deleteDoc, query, collection, where, addDoc, GeoPoint, updateDoc } from "firebase/firestore";
-import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
+import { baseApi } from './baseApi';
+import { createSlice}  from "@reduxjs/toolkit";
 
-export const tripApi = createApi({
-    reducerPath: 'tripApi',
-    baseQuery: fakeBaseQuery(),
-    tagTypes: ['Trips'],
+export const tripApi = baseApi.injectEndpoints({
     endpoints: builder => ({
         getTrips: builder.query({
             async queryFn(userID) {
@@ -102,6 +100,30 @@ export const tripApi = createApi({
             invalidatesTags: ['Trips'],
         }),
     }),
+    overrideExisting: false,
 })
+
+const initialState = {selectedTrip : ''}
+
+const tripSlice = createSlice({
+    name: "trip",
+    initialState,
+    reducers: {
+        setTrip(state, action) {
+            state.trip = action.payload
+        }
+    }
+})
+
+export const { setTrip } = tripSlice.actions;
+
+export default tripSlice.reducer;
+
+
+
+
+
+
+
 
 export const { useGetTripsQuery, useGetTripByTripId, useAddTripMutation, useRemoveTripMutation, useEditTripMutation } = tripApi;
