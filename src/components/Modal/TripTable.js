@@ -6,6 +6,7 @@ import BackDropModal from './BackDropModal';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTrip } from 'src/slices/trip';
+import { useMap } from 'react-leaflet'
 
 const TripTable =  () => {
     const user = useSelector(state => state.user.user);
@@ -16,16 +17,15 @@ const TripTable =  () => {
     const [editingTripId, setEditingTripId] = useState('')
     const [editTrip, editTripResult] = useEditTripMutation()
     const dispatch = useDispatch()
-
+    const map = useMap()
     const selectedTrip = useSelector(state => state.trip.trip)
-    
+    const selectedTripName = selectedTrip ? selectedTrip.name : ''
+
     const tripEditHandler = (prop) => {
         setBackDropModal(true)
         setEditName(prop.name)
         setEditingTripId(prop.id)
     }
-
-    
 
     const editTripFormOnSubmitHandler = async (e) => {
         e.preventDefault() 
@@ -37,6 +37,13 @@ const TripTable =  () => {
             console.log(err)
         }
     }
+    
+    const tripRowClickHandler = (trip) => {
+        dispatch(setTrip(trip))
+        map.flyTo([trip.startLocation.lat, trip.startLocation.long], 8)
+    }
+
+    
 
   return (
     <>
@@ -64,8 +71,8 @@ const TripTable =  () => {
                 {data ? 
                     data.map((trip) => (
                     <tr className='w-full trip-table' key={trip.id}>
-                        <td className={`w-full text-sm hover:bg-gray-800 cursor-pointer trip-table__row-data ${selectedTrip === trip.name && 'bg-blue-600'}`} onClick={() => dispatch(setTrip(trip.name))}>{trip.name}</td>
-                        <td className={`w-full hover:bg-gray-800 cursor-pointer trip-table__row-utility ${selectedTrip === trip.name && 'bg-blue-600'}`}>
+                        <td className={`w-full text-sm hover:bg-gray-800 cursor-pointer trip-table__row-data ${selectedTripName === trip.name && 'bg-blue-600'}`} onClick={() => tripRowClickHandler(trip)}>{trip.name}</td>
+                        <td className={`w-full hover:bg-gray-800 cursor-pointer trip-table__row-utility ${selectedTripName === trip.name && 'bg-blue-600'}`}>
                             <span className='trip-table__mini-modal'>
                                 <button className='btn' onClick={() => tripEditHandler({id : trip.id, name: trip.name})}>Edit</button>
                                 <button className='btn' onClick={() => deleteTrip(trip.id)}>Delete</button>

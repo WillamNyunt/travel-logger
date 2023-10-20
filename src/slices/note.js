@@ -27,3 +27,5 @@ export const noteApi = baseApi.injectEndpoints({
         })
     })
 })
+
+export const { useGetNotesByTripIdQuery } = noteApi;

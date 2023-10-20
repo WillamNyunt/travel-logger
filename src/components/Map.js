@@ -8,8 +8,9 @@ import DarkModeBtn from './Widgets/DarkModeBtn';
 import LeftUtilityBar from './Widgets/LeftUtilityBar';
 import { TripModal } from './Modal/TripModal';
 import AccountBar from './Widgets/AccountBar';
-import TropUtilityBar from './Widgets/TropUtilityBar';
+import TopUtilityBar from './Widgets/TopUtilityBar';
 import MapMarker from './MapMarker';
+import NoteModal from './Modal/NoteModal';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -23,6 +24,7 @@ L.Icon.Default.mergeOptions({
 function Map () {
     const theme = useSelector((state) => state.theme.theme);
     const tripModalOpen = useSelector(state => state.modal.tripModal);
+    const noteModalOpen = useSelector(state => state.modal.noteModal);
 
     return (
         <MapContainer className="full-height-map"
@@ -40,9 +42,10 @@ function Map () {
             <DesktopBar/>
             <MapMarker/>
             {tripModalOpen && <TripModal />}
+            {noteModalOpen && <NoteModal />}
             <LeftUtilityBar/>
             <DarkModeBtn/>
-            <TropUtilityBar/>
+            <TopUtilityBar/>
             <AccountBar />
         </MapContainer>
     );
