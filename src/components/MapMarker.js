@@ -3,7 +3,7 @@ import { Marker, useMapEvents, Popup } from 'react-leaflet'
 import { useState } from 'react'
 import { BiSwim } from "react-icons/bi"
 import { divIcon } from 'leaflet'
-import { renderToStaticMarkup } from "react-dom/server";
+import { renderToString } from "react-dom/server";
 import '../scss/MapMarker.scss';
 
 export default function MapMarker(props) {
@@ -12,8 +12,7 @@ export default function MapMarker(props) {
 
   const map = useMapEvents({
     click(e) {
-      console.log('map clicked')
-      map.flyTo(e.latlng, map.getZoom())
+      // map.flyTo(e.latlng, map.getZoom())
       setPosition(e.latlng)
     },
   })
@@ -22,7 +21,7 @@ export default function MapMarker(props) {
         icon = {
           divIcon ({
             className:'custom-icon',
-            html: renderToStaticMarkup(<BiSwim/>),
+            html: renderToString(<BiSwim/>),
             iconSize: [40, 40]
           })
         }

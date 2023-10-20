@@ -22,7 +22,7 @@ L.Icon.Default.mergeOptions({
 
 function Map () {
     const theme = useSelector((state) => state.theme.theme);
-    const tripModalOpen = useSelector(state => state.tripModal.open);
+    const tripModalOpen = useSelector(state => state.modal.tripModal);
 
     return (
         <MapContainer className="full-height-map"
@@ -38,7 +38,7 @@ function Map () {
                 url={theme === 'dark-theme' ?  ('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png') : ('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png')}
             />
             <DesktopBar/>
-            <MapMarker position={[0, 0]} />
+            <MapMarker/>
             {tripModalOpen && <TripModal />}
             <LeftUtilityBar/>
             <DarkModeBtn/>

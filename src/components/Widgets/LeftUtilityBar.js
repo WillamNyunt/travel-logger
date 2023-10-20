@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../scss/Widgets/LeftUtilityBar.scss';
-import { LuMap} from "react-icons/lu";
+import { LuMap, LuBook} from "react-icons/lu";
 import { useDispatch } from 'react-redux';
-import { setTripModal } from '../../slices/tripModal';
+import { setTripModal, setNoteModal } from '../../slices/modal';
 
 
 const LeftUtilityBar = () => {
@@ -13,9 +13,11 @@ const LeftUtilityBar = () => {
     }
 
 
+
     return (
         <nav className="left-utility-bar">
-            <button className="left-utility-bar__btn" data-tooltip='Trips' onClick={openTripModal}><LuMap/></button>
+            <button className="left-utility-bar__btn" data-tooltip='Trips' onClick={() => openTripModal(true)}><LuMap/></button>
+            <button className="left-utility-bar__btn" data-tooltip='Notes' onClick={() => {dispatch(setNoteModal(true))}}><LuBook/></button>
         </nav>
     )
 }

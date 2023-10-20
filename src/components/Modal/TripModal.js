@@ -1,6 +1,6 @@
 import './TripModal.scss';
 import { useDispatch } from 'react-redux';
-import { setTripModal } from '../../slices/tripModal';
+import { setTripModal } from '../../slices/modal';
 import { RxCross2 } from "react-icons/rx";
 import TripTable from './TripTable';
 import { useState } from 'react';
