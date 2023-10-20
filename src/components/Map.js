@@ -1,6 +1,6 @@
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
-import {MapContainer, TileLayer} from 'react-leaflet'
+import {MapContainer, TileLayer, useMapEvents, Marker, useMap } from 'react-leaflet'
 import '../scss/Map.scss';
 import DesktopBar from "./DekstopBar";
 import { useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import LeftUtilityBar from './Widgets/LeftUtilityBar';
 import { TripModal } from './Modal/TripModal';
 import AccountBar from './Widgets/AccountBar';
 import TropUtilityBar from './Widgets/TropUtilityBar';
+import MapMarker from './MapMarker';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -23,27 +24,28 @@ function Map () {
     const theme = useSelector((state) => state.theme.theme);
     const tripModalOpen = useSelector(state => state.tripModal.open);
 
-
-        return (
-            <MapContainer className="full-height-map"
-                center={[10, 120]}
-                zoom={5}
-                minZoom={3}
-                maxZoom={19}
-                scrollWheelZoom={true}>
-                <TileLayer
-                    className='map-tile'
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
-                    url={theme === 'dark-theme' ?  ('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png') : ('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png')}
-                />
-                <DesktopBar/>
-                {tripModalOpen && <TripModal />}
-                <LeftUtilityBar/>
-                <DarkModeBtn/>
-                <TropUtilityBar/>
-                <AccountBar />
-            </MapContainer>
-        );
+    return (
+        <MapContainer className="full-height-map"
+            center={[10, 120]}
+            zoom={5}
+            minZoom={3}
+            maxZoom={19}
+            scrollWheelZoom={true}
+            >
+            <TileLayer
+                className='map-tile'
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+                url={theme === 'dark-theme' ?  ('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png') : ('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png')}
+            />
+            <DesktopBar/>
+            <MapMarker position={[0, 0]} />
+            {tripModalOpen && <TripModal />}
+            <LeftUtilityBar/>
+            <DarkModeBtn/>
+            <TropUtilityBar/>
+            <AccountBar />
+        </MapContainer>
+    );
 }
 
 export default Map;
