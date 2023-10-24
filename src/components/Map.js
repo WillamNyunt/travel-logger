@@ -8,7 +8,7 @@ import DarkModeBtn from './Widgets/DarkModeBtn';
 import LeftUtilityBar from './Widgets/LeftUtilityBar';
 import { TripModal } from './Modal/TripModal';
 import AccountBar from './Widgets/AccountBar';
-import TopUtilityBar from './Widgets/TopUtilityBar';
+import TopInfoBar from './Widgets/TopInfoBar';
 import MapMarker from './MapMarker';
 import NoteModal from './Modal/NoteModal';
 
@@ -45,7 +45,7 @@ function Map () {
             <NoteModal className={noteModalOpen && '-open'} />
             <LeftUtilityBar/> 
             <DarkModeBtn/>
-            <TopUtilityBar/>
+            <TopInfoBar/>
             <AccountBar />
         </MapContainer>
     );

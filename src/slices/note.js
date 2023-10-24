@@ -45,4 +45,4 @@ export const noteApi = baseApi.injectEndpoints({
     })
 })
 
-export const { useGetNotesByTripIdQuery } = noteApi;
+export const { useGetNotesByTripIdQuery, useAppNoteByTripIdMutation } = noteApi;
