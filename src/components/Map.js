@@ -11,6 +11,7 @@ import AccountBar from './Widgets/AccountBar';
 import TopInfoBar from './Widgets/TopInfoBar';
 import MapMarker from './MapMarker';
 import NoteModal from './Modal/NoteModal';
+import NoteMarkers from './NoteMarkers';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -40,9 +41,10 @@ function Map () {
                 url={theme === 'dark-theme' ?  ('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png') : ('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png')}
             />
             <DesktopBar/>
-            <MapMarker/>
+            {/* <MapMarker/> */}
             {tripModalOpen && <TripModal />}
             <NoteModal className={noteModalOpen && '-open'} />
+            <NoteMarkers/>
             <LeftUtilityBar/> 
             <DarkModeBtn/>
             <TopInfoBar/>

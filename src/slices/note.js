@@ -16,6 +16,7 @@ export const noteApi = baseApi.injectEndpoints({
                         return {
                             id: note.id,
                             title: note.data().Title,
+                            position: {lat: note.data().Location._lat.toString(), lng: note.data().Location._long.toString()},
                         }
                     })
                     return {data : notesArr};

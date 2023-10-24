@@ -9,13 +9,6 @@ import '../scss/MapMarker.scss';
 export default function MapMarker(props) {
   const [position, setPosition] = useState([0 , 0])
 
-
-  const map = useMapEvents({
-    click(e) {
-      // map.flyTo(e.latlng, map.getZoom())
-      setPosition(e.latlng)
-    },
-  })
   return (
     <Marker
         icon = {
