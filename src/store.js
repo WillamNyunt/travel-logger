@@ -6,6 +6,7 @@ import loginReducer from './slices/login';
 import userReducer from './slices/user';
 import { tripApi } from './slices/trip';
 import tripReducer from './slices/trip';
+import mapReducer from './slices/map';
 
 const store = configureStore({
     reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
         user: userReducer,
         [tripApi.reducerPath] : tripApi.reducer,
         trip: tripReducer,
+        map: mapReducer,
     },
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware().concat(tripApi.middleware),

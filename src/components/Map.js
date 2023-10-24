@@ -1,5 +1,5 @@
 import 'leaflet/dist/leaflet.css'
-import L from 'leaflet'
+import L, { map } from 'leaflet'
 import {MapContainer, TileLayer, useMapEvents, Marker, useMap } from 'react-leaflet'
 import '../scss/Map.scss';
 import DesktopBar from "./DekstopBar";
@@ -12,6 +12,7 @@ import TopInfoBar from './Widgets/TopInfoBar';
 import MapMarker from './MapMarker';
 import NoteModal from './Modal/NoteModal';
 import NoteMarkers from './NoteMarkers';
+import TopUtilityBar from './Widgets/TopUtilityBar';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -21,14 +22,14 @@ L.Icon.Default.mergeOptions({
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-
 function Map () {
     const theme = useSelector((state) => state.theme.theme);
     const tripModalOpen = useSelector(state => state.modal.tripModal);
     const noteModalOpen = useSelector(state => state.modal.noteModal);
-
+    const map = useSelector(state => state.map);
+    
     return (
-        <MapContainer className="full-height-map"
+        <MapContainer className={`full-height-map map-container ${map.cursor}`}
             center={[10, 120]}
             zoom={5}
             minZoom={3}
@@ -48,6 +49,7 @@ function Map () {
             <LeftUtilityBar/> 
             <DarkModeBtn/>
             <TopInfoBar/>
+            <TopUtilityBar/>
             <AccountBar />
         </MapContainer>
     );

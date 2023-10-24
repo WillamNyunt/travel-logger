@@ -2,6 +2,15 @@
   height: 100vh;
 }
 
+.map-container {
+  &.cursor-add {
+    cursor: crosshair;
+  }
+  &.cursor-pointer {
+    cursor: pointer;
+  }
+}
+
 .leaflet-touch .leaflet-bar a:first-child {
   border-top-left-radius: 10px;
     border-top-right-radius: 10px;
