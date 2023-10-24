@@ -8,18 +8,35 @@ export const noteApi = baseApi.injectEndpoints({
         getNotesByTripId: builder.query({
             async queryFn(tripId) {
                 try {
-                    const ref = collection(db, "notes");
-                    const q = query(ref, where("tripId", "==", tripId));
-                    const querySnapshot = await getDocs(q);
+                    const ref = collection(db, `trips/${tripId}/notes`);
+                    const q = query(ref);
+                    const querySnapshot = await getDocs(ref);
                     const notes = querySnapshot.docs;
                     const notesArr = notes.map(note => {
                         return {
                             id: note.id,
-                            title: note.data().title,
-                            content: note.data().content,
-                            tripId: note.data().tripId,
+                            title: note.data().Title,
                         }
                     })
+                    return {data : notesArr};
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+        }),
+        addNoteByTripId: builder.mutation({
+            async queryFn({tripId, data}) {
+                try {
+                    const tripData = {
+                        Title: data.title,
+                        Comment: data.comment,
+                        Date: data.date,
+                        Location: new GeoPoint(data.location.lat, data.location.lng) ? new GeoPoint(Number(data.location.lat), Number(data.location.lng)) : Number(0),
+                        Color: data.color,
+                    }
+                    const ref = collection(db, `trips/${tripId}/notes`);
+                    const docRef = await addDoc(ref, tripData);
+                    return {data: docRef};
                 } catch (err) {
                     console.error(err);
                 }

@@ -42,8 +42,8 @@ function Map () {
             <DesktopBar/>
             <MapMarker/>
             {tripModalOpen && <TripModal />}
-            {noteModalOpen && <NoteModal />}
-            <LeftUtilityBar/>
+            <NoteModal className={noteModalOpen && '-open'} />
+            <LeftUtilityBar/> 
             <DarkModeBtn/>
             <TopUtilityBar/>
             <AccountBar />

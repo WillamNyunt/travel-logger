@@ -1,0 +1,37 @@
+.note-modal {
+    position: absolute;
+    right: 0;
+    height: 200px;
+    width: 400px;
+    z-index: 1000;
+    background-color: black;
+    top: 20%;
+    color: white;
+    padding: 20px;
+    border-radius: 25px 0 0 25px;
+    //transition 
+    &.-open{
+         transform: translateX(0);
+    }
+    transition: transform 0.1s ease-in-out;
+    transform: translateX(100%);
+}
+
+.note-modal__exit {
+    font-size: 24px;
+}
+
+.note-modal__note {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+.note-modal__integer{
+    background-color: red;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+}
