@@ -1,17 +1,15 @@
 import React from 'react'
 import { Marker, Popup } from 'react-leaflet'
-import { useState } from 'react'
-import { BiSwim } from "react-icons/bi"
 import { divIcon } from 'leaflet'
 import { renderToString } from "react-dom/server";
 import '../scss/MapMarker.scss';
 import { useGetNotesByTripIdQuery } from 'src/slices/note'
 import { useSelector } from 'react-redux'
+import {IoLocationOutline } from "react-icons/io5";
 
 export default function MapMarker() {
-  const [position, setPosition] = useState([0 , 0])
   const trip = useSelector(state => state.trip.trip);
-  const { data, error, isLoading} = useGetNotesByTripIdQuery(trip?.id);
+  const { data } = useGetNotesByTripIdQuery(trip?.id);
 
 
   const mapData = data?.map((data) => {
@@ -31,7 +29,7 @@ export default function MapMarker() {
                 icon = {
                 divIcon ({
                     className:'custom-icon',
-                    html: renderToString(<BiSwim/>),
+                    html: renderToString(<IoLocationOutline/>),
                     iconSize: [40, 40]
                 })
                 }
