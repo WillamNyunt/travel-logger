@@ -9,22 +9,24 @@ export default function TopUtilityBar() {
     const dispatch = useDispatch();
     const map = useMap();
     const cursor = useSelector(state => state.map.cursor)
-    const setMap = cursor => {
-        dispatch(setCursor(cursor));
-        console.log(map._container.classList)
+    const setMap = () => {
+        console.log(cursor)
+        const toggledCursor = cursor === 'cursor-add' ? 'cursor-pointer' : 'cursor-add';
+        console.log(toggledCursor)
+        dispatch(setCursor(toggledCursor));
         map._container.classList.forEach(className => {
             if (className.startsWith('cursor-')) {
                 map._container.classList.remove(className);
             }
         })
-        map._container.classList.add('cursor-add'); 
+        map._container.classList.add(toggledCursor); 
     }
 
   return (
     <div className='topUtilityBar'>
-        <button className='topUtilityBar-item -add-location'
-        data-tooltip='Add content'
-        onClick={() => setMap('cursor-add')}>
+        <button className={`topUtilityBar-item -add-location ${cursor === 'cursor-pointer' ? 'active' : ''}`}
+        data-tooltip='Add note'
+        onClick={() => setMap()}>
             <IoAddCircle />
         </button>
     </div>

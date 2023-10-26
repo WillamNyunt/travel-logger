@@ -27,6 +27,12 @@
     column-gap: 10px;
 }
 
+.note-modal__note-list {
+    row-gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
 .note-modal__integer{
     background-color: red;
     height: 20px;

@@ -28,6 +28,7 @@ export const noteApi = baseApi.injectEndpoints({
         addNoteByTripId: builder.mutation({
             async queryFn({tripId, data}) {
                 try {
+                    console.log(data)
                     const tripData = {
                         Title: data.title,
                         Comment: data.comment,
@@ -41,9 +42,11 @@ export const noteApi = baseApi.injectEndpoints({
                 } catch (err) {
                     console.error(err);
                 }
-            }
+            },
+            invalidateTags: ['Notes']
         })
+    
     })
 })
 
-export const { useGetNotesByTripIdQuery, useAppNoteByTripIdMutation } = noteApi;
+export const { useGetNotesByTripIdQuery, useAddNoteByTripIdMutation } = noteApi;

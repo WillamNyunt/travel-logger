@@ -24,7 +24,7 @@ export default function NoteModal(props) {
               {isLoading && <p>Loading...</p>}
               {data ? data.map((note) => {
                 return (
-                  <div className='note-modal__note'>
+                  <div key={note.id} className='note-modal__note'>
                     <span className='note-modal__integer'>1</span>
                     <p>{note.title}</p>
                   </div>
