@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import {IoLocationOutline } from "react-icons/io5";
 import { setCursor } from 'src/slices/map';
 import { useState, useEffect } from 'react';
+import { useRef } from 'react';
 
 export default function MapMarker() {
   const trip = useSelector(state => state.trip.trip);
@@ -16,25 +17,25 @@ export default function MapMarker() {
   const [addNote , result ] = useAddNoteByTripIdMutation();
   const [mapData, setMapdata ] = useState();  
   const dispatch = useDispatch();
-
-
+  const noteMarkerRef = useRef([]);
 
   useEffect(() => {
-    setMapdata(data?.map((data) => {
-      return {
-        id: data.id,
-        title: data.title,
-        position: [Number(data.position.lat) , Number(data.position.lng)]
-      }
-    }))
-  }, [data])
+      setMapdata(data?.map((data) => {
+        return {
+          id: data.id,
+          title: data.title,
+          position: [Number(data.position.lat) , Number(data.position.lng)]
+        }      
+      }))
+      console.log(data)
+  }, [data, noteMarkerRef])
 
   useMapEvent('click', async (e) => {
     if (cursor === 'cursor-add') {
-      try{
-          addNote({tripId: trip.id, title: 'test', comment: 'test', date: 'test', location: {lat: e.latlng.lat, lng: e.latlng.lng}, color: 'test'}).then(() => {
-          dispatch(setCursor('cursor-pointer'));
-        })
+      try {
+          await addNote({tripId: trip.id, title: 'test', comment: 'test', date: 'test', location: {lat: e.latlng.lat, lng: e.latlng.lng}, color: 'test'}).then(() => {
+            dispatch(setCursor('cursor-pointer'));
+           })
       } catch (err) {
         console.log(err)
         console.log(result)
@@ -55,6 +56,13 @@ export default function MapMarker() {
                     iconSize: [40, 40]
                 })
                 }
+                ref={
+                  (el) => {
+                    if (el && !noteMarkerRef.current.includes(el)) {
+                      noteMarkerRef.current.push(el);
+                    }
+                  }
+                } 
                 position={mapData.position}
                 >
                 <Popup>{mapData.title}</Popup>

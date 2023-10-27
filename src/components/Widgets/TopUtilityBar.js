@@ -4,15 +4,25 @@ import { IoAddCircle } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
 import { setCursor } from '../../slices/map';
 import { useMap } from 'react-leaflet';
+import { useEffect } from 'react';
 
 export default function TopUtilityBar() {
     const dispatch = useDispatch();
     const map = useMap();
     const cursor = useSelector(state => state.map.cursor)
+
+    useEffect(() => {
+        map._container.classList.forEach(className => {
+            if (className.startsWith('cursor-')) {
+                map._container.classList.remove(className);
+            }
+        })
+        map._container.classList.add(cursor);
+    }, [cursor])
+
     const setMap = () => {
         console.log(cursor)
         const toggledCursor = cursor === 'cursor-add' ? 'cursor-pointer' : 'cursor-add';
-        console.log(toggledCursor)
         dispatch(setCursor(toggledCursor));
         map._container.classList.forEach(className => {
             if (className.startsWith('cursor-')) {

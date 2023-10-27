@@ -30,12 +30,12 @@ export const TripModal = () => {
             { addTripFormOpen ? <AddTripForm changeToPreviousPage={() => setAddTripFormOpen(false)} /> : <TripTable/>}
             </div>
             { !addTripFormOpen ? 
-                    <div className='trip-modal-footer'>
-                        <button className="btn btn-dm-white" onClick={addTripOnClickListener}>Add trip</button>
-                    </div> : 
-                    <div className='trip-modal-footer'>
-                     <button className="btn btn-dm-white rounded-lg" onClick={backTripModalListener}>Back</button>
-                    </div>
+                <div className='trip-modal-footer'>
+                    <button className="btn btn-dm-white" onClick={addTripOnClickListener}>Add trip</button>
+                </div> : 
+                <div className='trip-modal-footer'>
+                    <button className="btn btn-dm-white rounded-lg" onClick={backTripModalListener}>Back</button>
+                </div>
             }
         </div>
     )
