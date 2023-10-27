@@ -23,29 +23,27 @@ export const noteApi = baseApi.injectEndpoints({
                 } catch (err) {
                     console.error(err);
                 }
-            }
+            },
+            providesTags: (result, error, tripId) => [{ type: 'Notes', tripId }],
         }),
         addNoteByTripId: builder.mutation({
-            async queryFn({tripId, data}) {
+            async queryFn(data) {
                 try {
-                    console.log(data)
-                    const tripData = {
-                        Title: data.title,
-                        Comment: data.comment,
-                        Date: data.date,
-                        Location: new GeoPoint(data.location.lat, data.location.lng) ? new GeoPoint(Number(data.location.lat), Number(data.location.lng)) : Number(0),
-                        Color: data.color,
-                    }
-                    const ref = collection(db, `trips/${tripId}/notes`);
-                    const docRef = await addDoc(ref, tripData);
-                    return {data: docRef};
+                    const ref = collection(db, `trips/${data.tripId}/notes`);
+                    const docRef = await addDoc(ref, {
+                            Title: data.title,
+                            Comment: data.comment,
+                            Date: data.date,
+                            Location: new GeoPoint(data.location.lat, data.location.lng) ? new GeoPoint(Number(data.location.lat), Number(data.location.lng)) : new GeoPoint(0,0),
+                            Color: data.color,
+                        });    
+                    return docRef;
                 } catch (err) {
                     console.error(err);
                 }
             },
-            invalidateTags: ['Notes']
+            invalidatesTags: (result, error, data) => [{ type: 'Notes', tripId: data.tripId }],
         })
-    
     })
 })
 

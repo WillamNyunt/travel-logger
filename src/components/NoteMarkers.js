@@ -17,6 +17,8 @@ export default function MapMarker() {
   const [mapData, setMapdata ] = useState();  
   const dispatch = useDispatch();
 
+
+
   useEffect(() => {
     setMapdata(data?.map((data) => {
       return {
@@ -30,7 +32,7 @@ export default function MapMarker() {
   useMapEvent('click', async (e) => {
     if (cursor === 'cursor-add') {
       try{
-          addNote({tripId: trip.id, data: {title: 'test', comment: 'test', date: 'test', location: {lat: e.latlng.lat, lng: e.latlng.lng}, color: 'test'}}).then(() => {
+          addNote({tripId: trip.id, title: 'test', comment: 'test', date: 'test', location: {lat: e.latlng.lat, lng: e.latlng.lng}, color: 'test'}).then(() => {
           dispatch(setCursor('cursor-pointer'));
         })
       } catch (err) {

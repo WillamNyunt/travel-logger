@@ -61,14 +61,6 @@ export const tripApi = baseApi.injectEndpoints({
                 }
             },
             invalidatesTags: ['Trips'],
-            async onQueryStarted(arg, { dispatch, queryFulfilled, updateCachedData }) {
-                try {
-                    const result = await dispatch(queryFulfilled(arg));
-                    return { result, error: null };
-                } catch (error) {
-                    return { result: null, error };
-                }
-            },
         }),
         removeTrip: builder.mutation({
             async queryFn(tripID) {

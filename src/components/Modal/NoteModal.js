@@ -10,7 +10,7 @@ export default function NoteModal(props) {
   const trip = useSelector(state => state.trip.trip);
   const { data, error, isLoading} = useGetNotesByTripIdQuery(trip?.id); 
   const dispatch = useDispatch();
-
+  console.log(data)
   return (
     <div className={`note-modal ${props.className}`}>
       <div className='note-modal__header flex flex-row justify-between items-center'>
